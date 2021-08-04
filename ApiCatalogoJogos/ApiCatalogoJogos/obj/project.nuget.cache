@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "uzAFNS3G/FamZmD/jD6JBBg8fDBoyLE1PCsbm2Rp+P5GXYYEUuIDjbYvgTuqA091Jm1dN+fSJ6CEw9DC7vTMcg==",
+  "success": true,
+  "projectFilePath": "C:\\Workspace\\DIO\\DIO_PRJ_CatalogoJogos\\ApiCatalogoJogos\\ApiCatalogoJogos\\ApiCatalogoJogos.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lucin\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\lucin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\lucin\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\lucin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\lucin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\lucin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
