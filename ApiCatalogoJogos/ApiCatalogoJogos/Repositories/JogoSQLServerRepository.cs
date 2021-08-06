@@ -124,6 +124,7 @@ namespace ApiCatalogoJogos.Repositories
         public void Dispose()
         {
             sqlConnection?.Close();
+            sqlConnection?.Dispose();
         }
     }
 }

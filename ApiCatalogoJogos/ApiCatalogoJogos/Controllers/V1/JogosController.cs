@@ -23,7 +23,16 @@ namespace ApiCatalogoJogos.Controllers.V1
             _jogoService = jogoService;
         }
 
-
+        /// <summary>
+        /// Buscar a lista de jogos de forma paginada
+        /// </summary>
+        /// <remarks>
+        /// Não é possível retornar a lista sem paginação
+        /// </remarks>
+        /// <param name="pagina">Indica qual página está sendo consultada, iniciando pela primeira.</param>
+        /// <param name="quantidade">Indica a quantidade de registros por páginas, retornando o mínimo de 1 e o máximo de 50</param>
+        /// <response code="200">Retorna a lista de jogos</response>
+        /// <response code="204">Caso não existam jogos cadastrados</response>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<JogoViewModel>>> Obter([FromQuery, Range(1, int.MaxValue)] int pagina = 1, [FromQuery, Range(1, 50)] int quantidade = 5)
         {
@@ -35,6 +44,12 @@ namespace ApiCatalogoJogos.Controllers.V1
             return Ok(jogos);
         }
 
+        /// <summary>
+        /// Buscar um jogo pela chave.
+        /// </summary>
+        /// <param name="idJogo">Identificação do jogo consultado</param>
+        /// <response code="200">Retorna os dados do jogo filtrado</response>
+        /// <response code="204">Caso não exista jogo cadastrado com a chava pesquisada</response>
         [HttpGet("{idJogo:guid}")]
         public async Task<ActionResult<List<JogoViewModel>>> Obter([FromRoute] Guid idJogo)
         {
@@ -89,7 +104,7 @@ namespace ApiCatalogoJogos.Controllers.V1
                 return UnprocessableEntity("Jogo inexistente");
             }
         }
-        [HttpDelete("{idJogo:guid")]
+        [HttpDelete("{idJogo:guid}")]
         public async Task<ActionResult<List<object>>> ApagarJogo([FromRoute] Guid idJogo)
         {
             try
