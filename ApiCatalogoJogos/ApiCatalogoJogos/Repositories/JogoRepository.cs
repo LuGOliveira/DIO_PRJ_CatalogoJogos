@@ -13,7 +13,6 @@ namespace ApiCatalogoJogos.Repositories
         {
             {Guid.Parse("9546482E-887A-4CAB-A403-AD9C326FFDA5"), new Jogo {Id = Guid.Parse("9546482E-887A-4CAB-A403-AD9C326FFDA5"), Nome="Teste1", Produtora ="Produtora 1", Preco=1.90}},
             {Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f"), new Jogo {Id = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f"), Nome="Teste2", Produtora ="Produtora 2", Preco=1.90}},
-            {Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f"), new Jogo {Id = Guid.Parse("81a130d2-502f-4cf1-a376-63edeb000e9f"), Nome="Teste3", Produtora ="Produtora 3", Preco=1.90}}
         };
         
         public Task<List<Jogo>> Obter(int pagina, int quantidade)
