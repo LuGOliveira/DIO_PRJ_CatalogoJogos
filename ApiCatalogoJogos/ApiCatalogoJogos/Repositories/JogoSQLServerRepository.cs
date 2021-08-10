@@ -59,7 +59,7 @@ namespace ApiCatalogoJogos.Repositories
                     Id = (Guid)sqlDataReader["Id"],
                     Nome = (string)sqlDataReader["Nome"],
                     Produtora = (string)sqlDataReader["Produtora"],
-                    Preco = (decimal)sqlDataReader.GetDouble(3)
+                    Preco = (decimal)sqlDataReader["Preco"]
                 };
             }
             await sqlConnection.CloseAsync();
@@ -103,17 +103,17 @@ namespace ApiCatalogoJogos.Repositories
 
         public async Task Atualizar(Jogo jogo)
         {
-            var comando = $"Update Jogo set Nome = '{(jogo.Nome)}' , Produtora = '{(jogo.Produtora)}', Preco = {(jogo.Preco)} where Id = {(jogo.Id)} ";
+            var comando = $"Update Jogo set Nome = '{(jogo.Nome)}' , Produtora = '{(jogo.Produtora)}', Preco = {(jogo.Preco)} where Id = '{(jogo.Id)}' ";
 
             await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(comando, sqlConnection);
-            sqlCommand.ExecuteNonQueryAsync();
+            sqlCommand.ExecuteNonQuery();
             await sqlConnection.CloseAsync();
 
         }
         public async Task Remover(Guid id)
         {
-            var comando = $"Delete Jogo where Id = {(id)} ";
+            var comando = $"Delete Jogo where Id = '{id}' ";
 
             await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(comando, sqlConnection);
