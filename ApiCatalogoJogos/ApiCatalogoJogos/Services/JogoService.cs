@@ -90,7 +90,7 @@ namespace ApiCatalogoJogos.Services
 
         }
 
-        public async Task Atualizar(Guid id, double preco)
+        public async Task Atualizar(Guid id, decimal preco)
         {
             var entidadeJogo = await _jogoRepository.Obter(id);
 

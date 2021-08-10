@@ -10,6 +10,7 @@ namespace ApiCatalogoJogos.Repositories
 {
     public class JogoSQLServerRepository : IJogoRepository
     {
+
         private readonly SqlConnection sqlConnection;
 
         public JogoSQLServerRepository(IConfiguration configuration)
@@ -21,9 +22,9 @@ namespace ApiCatalogoJogos.Repositories
         {
             var jogos = new List<Jogo>();
 
-            var comando = $"Select * from Jogos order by id offset {((pagina - 1) * quantidade)} rows fetch next {quantidade} rows only";
+            var comando = $"Select * from Jogo order by id offset {((pagina - 1) * quantidade)} rows fetch next {quantidade} rows only";
 
-            await sqlConnection.OpenAsync();
+           await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(comando, sqlConnection);
             SqlDataReader sqlDataReader = await sqlCommand.ExecuteReaderAsync();
 
@@ -34,7 +35,7 @@ namespace ApiCatalogoJogos.Repositories
                     Id = (Guid)sqlDataReader["Id"],
                     Nome = (string)sqlDataReader["Nome"],
                     Produtora = (string)sqlDataReader["Produtora"],
-                    Preco = (double)sqlDataReader["Preco"],
+                    Preco = (decimal)sqlDataReader["Preco"]
                 });
             }
             await sqlConnection.CloseAsync();
@@ -43,9 +44,9 @@ namespace ApiCatalogoJogos.Repositories
 
         public async Task<Jogo> Obter(Guid id)
         {
-            var jogo = new Jogo();
+            Jogo jogo = null;
 
-            var comando = $"Select * from Jogos where Id = {(id)}";
+            var comando = $"Select * from Jogo where Id = '{id}'";
 
             await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(comando, sqlConnection);
@@ -58,7 +59,7 @@ namespace ApiCatalogoJogos.Repositories
                     Id = (Guid)sqlDataReader["Id"],
                     Nome = (string)sqlDataReader["Nome"],
                     Produtora = (string)sqlDataReader["Produtora"],
-                    Preco = (double)sqlDataReader["Preco"],
+                    Preco = (decimal)sqlDataReader.GetDouble(3)
                 };
             }
             await sqlConnection.CloseAsync();
@@ -69,7 +70,7 @@ namespace ApiCatalogoJogos.Repositories
         {
             var jogos = new List<Jogo>();
 
-            var comando = $"Select * from Jogos where Nome = {(nome)} and Produtora = {(produtora)}";
+            var comando = $"Select * from Jogo where Nome = '{nome}' and Produtora = '{produtora}'";
 
             await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(comando, sqlConnection);
@@ -82,7 +83,7 @@ namespace ApiCatalogoJogos.Repositories
                     Id = (Guid)sqlDataReader["Id"],
                     Nome = (string)sqlDataReader["Nome"],
                     Produtora = (string)sqlDataReader["Produtora"],
-                    Preco = (double)sqlDataReader["Preco"],
+                    Preco = (decimal)sqlDataReader["Preco"]
                 });
             }
             await sqlConnection.CloseAsync();
@@ -91,7 +92,7 @@ namespace ApiCatalogoJogos.Repositories
 
         public async Task Inserir(Jogo jogo)
         {
-            var comando = $"Insert into Jogos (Id, Nome, Produtora, Preco) values ({(jogo.Id)}, {(jogo.Nome)}, {(jogo.Produtora)}, {(jogo.Preco)})";
+            var comando = $"Insert into Jogo (Id, Nome, Produtora, Preco) values ('{(jogo.Id)}', '{(jogo.Nome)}', '{(jogo.Produtora)}', {(jogo.Preco)})";
 
             await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(comando, sqlConnection);
@@ -102,21 +103,21 @@ namespace ApiCatalogoJogos.Repositories
 
         public async Task Atualizar(Jogo jogo)
         {
-            var comando = $"Update Jogos set Nome = {(jogo.Nome)} , Produtora = {(jogo.Produtora)}, , Preco = {(jogo.Preco)} where Id = {(jogo.Id)} ";
+            var comando = $"Update Jogo set Nome = '{(jogo.Nome)}' , Produtora = '{(jogo.Produtora)}', Preco = {(jogo.Preco)} where Id = {(jogo.Id)} ";
 
             await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(comando, sqlConnection);
-            sqlCommand.ExecuteNonQuery();
+            sqlCommand.ExecuteNonQueryAsync();
             await sqlConnection.CloseAsync();
 
         }
         public async Task Remover(Guid id)
         {
-            var comando = $"Delete Jogos where Id = {(id)} ";
+            var comando = $"Delete Jogo where Id = {(id)} ";
 
             await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(comando, sqlConnection);
-            sqlCommand.ExecuteNonQuery();
+            sqlCommand.ExecuteNonQueryAsync();
             await sqlConnection.CloseAsync();
 
         }

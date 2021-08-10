@@ -92,7 +92,7 @@ namespace ApiCatalogoJogos.Controllers.V1
 
 
         [HttpPatch("{idJogo:guid}/preco/{preco:double}")]
-        public async Task<ActionResult<List<object>>> AtualizarJogo([FromRoute] Guid idJogo, [FromRoute] double preco)
+        public async Task<ActionResult<List<object>>> AtualizarJogo([FromRoute] Guid idJogo, [FromRoute] decimal preco)
         {
             try
             {

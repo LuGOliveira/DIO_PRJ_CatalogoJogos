@@ -13,7 +13,7 @@ namespace ApiCatalogoJogos.Services
         Task<JogoViewModel> Obter(Guid id);
         Task<JogoViewModel> Inserir(JogoInputModel jogo);
         Task Atualizar(Guid id, JogoInputModel jogo);
-        Task Atualizar(Guid id, double preco);
+        Task Atualizar(Guid id, decimal preco);
         Task Remover(Guid id);
     }
 }

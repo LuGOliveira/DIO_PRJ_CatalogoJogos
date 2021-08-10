@@ -16,7 +16,7 @@ namespace ApiCatalogoJogos.Middleware
             this.next = next;
 
         }
-        public async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext  context)
         {
             try
             {

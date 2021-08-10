@@ -34,7 +34,8 @@ namespace ApiCatalogoJogos
         {
 
             services.AddScoped<IJogoService, JogoService>();
-            services.AddScoped<IJogoRepository, JogoRepository>();
+            //services.AddScoped<IJogoRepository, JogoRepository>();
+            services.AddScoped<IJogoRepository, JogoSQLServerRepository>();
 
             #region CicloDeVida
             services.AddSingleton<IExemploSingleton, ExemploCicloDeVida>();
